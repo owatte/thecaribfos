@@ -1,0 +1,79 @@
+{% load i18n %}
+var map = new L.map('map',{fullscreenControl: true,
+                            scrollWheelZoom: false,
+                            fullscreenControlOptions:{position: 'topleft'}
+                          }).setView([19.031, -73.048], 6);
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+}).addTo(map);
+
+
+{# comment 'put all entries geolocalizable in an array[ [marker_title, marker_lat, marker_lon, marker_popup] ]' #}
+var entries = {
+    {% for entry in object_list %}
+    {% if entry.lat %}"{{ entry.pk }}":['{{ entry.name }}', {{ entry.lat }}, {{ entry.lon }}, "taratata"],
+    {% endif %}
+    {% endfor %}
+};
+var tags_layers = new Array();
+var tags_all = [{% for entry in object_list %}
+    {% if entry.lat %}"{{ entry.pk }}",{% endif %}
+    {% endfor %}
+];
+
+
+var markers = L.markerClusterGroup();
+
+//~ for (var i = 0; i < entries.length; i++) {
+    //~ var entry = entries[i];
+    //~ var title = entry[0];
+    //~ var popup = entry[3];
+    //~ var marker = L.marker(new L.LatLng(entry[1], entry[2]), { title: title });
+    //~ marker.bindPopup(popup);
+    //~ markers.addLayer(marker);
+//~ }
+
+
+//
+
+//~ var mapcat52 = new MyCustomLayer(latlng);
+//~ // save to layers list
+//~ layers["mapcat52"] = mapcat52;
+//~ ...
+//~ // remove layers
+//~ $.each(someObj.idsChecked,function(id, val) {
+    //~ // look up layer object by id
+    //~ var layerObj = layers[val];
+    //~ // remove layer
+    //~ map.removeLayer(layerObj);
+  //~ });
+//~ //
+
+
+//~ for (var key in entries) {
+    //~ if (entries.hasOwnProperty(key)) {
+        //~ alert(key + " -> " + p[key]);
+//~
+        //~ var entry = entries[key];
+        //~ var title = entry[1];
+        //~ var popup = entry[4];
+        //~ var marker = L.marker(new L.LatLng(entry[2], entry[3]), { title: title });
+        //~ marker.bindPopup(popup);
+        //~ markers.addLayer(marker);
+    //~ }
+//~ }
+for (var i = 0; i < tags_all.length; i++) {
+    var indice = tags_all[i];
+    var entry = entries[indice];
+    var title = entry[1];
+        var popup = entry[4];
+        var marker = L.marker(new L.LatLng(entry[2], entry[3]), { title: title });
+        marker.bindPopup(popup);
+        markers.addLayer(marker);
+}
+
+map.addLayer(markers);
+tags_layers['tags_all'] = markers;
+map.fitBounds(markers.getBounds());

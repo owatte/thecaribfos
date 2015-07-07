@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+#import tagging_autocomplete.models
+
+import datetime
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('thedirectory', '0003_auto_20150525_1515'),
+    ]
+
+    operations = [
+        migrations.AlterField(
+            model_name='entry',
+            name='tags',
+            #field=tagging_autocomplete.models.TagAutocompleteField(max_length=255, blank=True),
+            field=models.CharField(default=datetime.datetime(2015, 5, 25, 17, 23, 6, 515140), max_length=b'105'),
+
+        ),
+    ]

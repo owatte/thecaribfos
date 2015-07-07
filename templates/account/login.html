@@ -1,0 +1,63 @@
+{% extends "page.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Log in" %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li class="active">{% trans "Log in" %}</li>
+{% endblock %}
+
+
+
+{% block main-content %}
+<section id="fos-user">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="text-center">{% trans "Log in" %}</h2>
+            <hr class="star-primary">
+            <hr>
+
+            <div class="social-login text-center">
+                <h3>{% trans "Log in with one of the following" %}</h3>
+                <br>
+                <div class="social-login-row">
+                    <a href='{% url "social:begin" "twitter" %}' class="btn btn-default btn-lg">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                    <a href='{% url "social:begin" "facebook" %}' class="btn btn-default btn-lg">
+                        <i class="fa fa-facebook-square"></i> Facebook
+                    </a>
+                    <a href='{% url "social:begin" "google-oauth2" %}' class="btn btn-default btn-lg">
+                        <i class="fa fa-google"></i> Google
+                    </a>
+                </div>
+                <br>
+                <p>{% trans "You refuse to us this kind of service ?" %}<a href="{% url 'thecontactform:contact-form' %}" class="btn btn-link btn-lg">{% trans "Request an internal account" %}</a></p>
+            </div>
+            <hr>
+            <h3 class="text-center">{% trans "Log in with an internal existing account" %}</h3>
+
+            <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <p class="text-center"><button type="submit" class="btn btn-primary">{% trans "Log in" %}</button>
+                <a href="{% url "account_password_reset" %}" class="btn btn-link">{% trans "Forgot your password?" %}</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer-js %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#id_username').focus();
+    });
+</script>
+{% endblock %}

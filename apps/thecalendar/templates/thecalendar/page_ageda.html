@@ -1,0 +1,100 @@
+{% extends 'site_base.html' %}
+{% load i18n %}
+{% load l10n %}
+{% load staticfiles %}
+{% load tag_cloud %}
+
+{% block head %}
+{% include "thedirectory/map/map_page_header.html" %}
+<link rel='stylesheet' href="{% static 'css/leaflet-sidebar.min.css' %}"/>
+<script src="{% static 'js/leaflet-sidebar.min.js' %}"></script>
+
+<style>
+       #fos-map {
+           position:relative;
+
+        }
+       #map {
+            position:absolute;
+            z-index:1;
+            top:63px;
+            bottom:0;
+            left:0;
+            right:0;
+
+            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+</style>
+{% endblock %}
+
+{% block body-header-content %}
+            <div id="map" class="sidebar-map"></div>
+
+{% endblock %}
+
+{% block main-content %}
+<section id="fos-map">
+
+    <div class="container">
+        <div class="row" >
+            <div class="col-lg-12 text-center">
+                <h2>{% trans "Localize it !" %}</h2>
+                <hr class="star-primary">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <ul class="sidebar-tabs" role="tablist">
+            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+            <li><a href="#tags" role="tab"><i class="fa fa-user"></i></a></li>
+            <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+            <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content active">
+            <div class="sidebar-pane" id="home">
+                <h1>{% trans "Localize it !" %}</h1>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="sidebar-pane" id="tags"><h1>Tags</h1>
+                {% tag_cloud_for_model 'thedirectory.Entry' as tags %}
+                {% for tag in tags %}
+                <a id="tag_{{ tag.pk }}" href="#" >#{{ tag.name }}</a>
+                {% endfor %}<a id="tags_show_all" href="#">{% trans 'Show all tags' %}</a>
+            </div>
+            <div class="sidebar-pane" id="messages"><h1>Messages</h1></div>
+            <div class="sidebar-pane" id="settings"><h1>Settings</h1></div>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-lg-12 text-center">
+        </div>
+    </div>
+</section>
+{% endblock main-content %}
+
+{% block body-footer-content %}
+{% endblock body-footer-content %}
+
+
+{% block footer-js %}
+{% include "thedirectory/map/map_page_footer.html" %}
+{% endblock %}
+
+{% block analytics %}{% endblock %}
+
+
+

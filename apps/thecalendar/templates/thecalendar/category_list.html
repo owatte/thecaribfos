@@ -1,0 +1,24 @@
+{% extends 'include/page_panel.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Categories of events" %}{% endblock %}
+
+{% block content-title %}{% trans "Categories of events" %}{% endblock %}
+
+{% block panel-title %}<a href="{% url 'thecarib:country_list' %}">{% trans 'Caribbean' %}</a> / {% trans "Categories of events" %}'{% endblock %}
+
+{% block page-body %}
+    <ul>{% for category in categories %}
+        <li><a href="{% url 'thecalendar:category_detail' slug=category.slug %}">{{ category.name }}</a>
+        </li>
+    {% endfor %}</ul>
+{% endblock %}
+
+{% block panel-footer %}The caribbean free open source organizations and people directory{% endblock %}
+
+{% block see-also %}
+    <ul>
+        <li><a href="{% url 'thecarib:country_list' %}">{% trans 'Carribean' %}</a></li>
+        <li><a href="{% url 'thecalendar:category_list' %}">{% trans 'Events categories' %}</a></li>
+{% endblock %}</ul>

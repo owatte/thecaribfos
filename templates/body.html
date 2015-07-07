@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n thumbnail %}
+{% load thecarib_tags %}
+{% block body %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">{% trans 'Toggle navigation' %}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/#page-top">{{ CURRENT_SITE.name }}</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    {% block navbar-menu %}{% endblock %}
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    {# page header #}
+    <header>
+    {% block body-header-content %}
+    {% endblock %}
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="main-content">
+    {% block main-content %}
+        <div class="container">
+
+            {# User message #}
+            {% include "include/user_messages.html" %}
+
+            <div class="row">
+                {% block content-row %}
+                <div id="content" class="col-sm-8">
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-sm-4">
+                    <hr class="visible-xs" />
+                    {% block nav %}{% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock main-content%}
+    </section>
+
+    {%  block body-footer-content %}{% endblock %}
+
+{% endblock body %}
+
+{% block footer %}{% endblock footer %}
+

@@ -1,0 +1,62 @@
+{% extends 'include/page_panel.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load slug2js %}
+
+{% block head_title %}{{ category.name }}{% endblock %}
+{% block head %}{% include "thedirectory/map/map_page_header.html" %}{% endblock %}
+
+{% block content-title %}{{ category.name }}{% endblock %}
+
+{% block panel-title %}<a href="{% url 'thedirectory:map' %}" class="btn-link">{% trans 'The caribbean Free Open Source directory' %}</a> / {{ category.name }}{% endblock %}
+
+{% block page-body %}
+    <h3>{{ category.name }}</h3>
+    {% if category.description %}{{ category.description }}{% endif %}
+    <ul>
+    {% for entry in entry_list %}
+        <li><strong><a href="{% url 'thedirectory:entry_detail' entry.slug %}">{{ entry.name|upper }}</a></strong> (<a href="{% url 'thecarib:country_detail' entry.country.iso %}">{{ entry.country.name }}</a>)<br>
+        {% for tag in entry.tags.slugs %}{{ tag }}&nbsp;{% endfor %}<br>
+        {{ entry.description|slice:":250" }}
+        </li>
+    {% empty %}
+    <li>{% trans 'Sorry, this category is empty' %}</li>
+    {% endfor %}
+    </ul>
+    <p><a class="btn btn-primary" href="{% url 'thedirectory:form_entry_add' %}" role="button">{% trans 'Add a new organization or people' %}</a></p>
+{% endblock %}
+
+
+{% block panel-footer %}The caribbean free open source organizations and people directory{% endblock %}
+
+{% block post-panel %}<div style="height:350px;" id="map"></div><br>{% endblock %}
+
+{% block see-also %}<ul>
+        <li><a href="thecarib:country_list">{% trans 'The countries' %}</a></li>
+        <li><a href="thedirectory:category_list">{% trans 'The directory entries categories' %}</a></li>
+        <li><a href="thecalendar:category_list">{% trans 'The events categories' %}</a></li>
+</ul>{% endblock %}
+
+{% block footer-js %}
+<script>
+var map = new L.map('map',{fullscreenControl: false,
+                            scrollWheelZoom: false,
+                            fullscreenControlOptions:{position: 'topleft'}
+                          }).setView([19.031, -73.048], 4);
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+}).addTo(map);
+var markers = L.markerClusterGroup();
+
+{% for entry in entry_list %}
+var marker = L.marker(new L.LatLng({{ entry.lat }}, {{ entry.lon }}), { title: "{{ entry.name }}" });
+    markers.addLayer(marker);
+{% endfor %}
+map.addLayer(markers);
+map.on();
+
+</script>
+{% endblock %}
+

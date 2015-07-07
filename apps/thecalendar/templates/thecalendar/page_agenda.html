@@ -1,0 +1,104 @@
+{% extends 'site_base.html' %}
+{% load i18n %}
+{% load l10n %}
+{% load staticfiles %}
+{% load tag_cloud %}
+{% load  thecarib_tags %}
+
+{% block head_title %}{% trans "Calendar" %}{% endblock %}
+
+{% block head %}
+<link rel='stylesheet' href="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.css' %}"/>
+{% endblock %}
+
+{% block body-header-content %}
+
+{% endblock %}
+
+{% block main-content %}
+<section id="fos-agenda">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>{% trans "Calendar !" %}</h2>
+            <hr class="star-primary">
+            <p>{% trans "Caribbean Free Open Source communities agenda" %}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="page-header"><i class="fa fa-random"> </i> {% trans 'Coming Events' %}</h3>
+            <div class="list-group">
+              <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">Hackp&eacute;ro Avril 2015</h4>
+                <p class="list-group-item-text"><small>5 avril 2015 - Guadeloupe</small></p>
+                <p class="list-group-item-text">Lorem ipsum taratata tsoin tsoin. Lorem ipsum taratata tsoin tsoin. Lorem ipsum taratata tsoin tsoin. </p>
+              </a>
+              <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">Hackp&eacute;ro Avril 2015</h4>
+                <p class="list-group-item-text"><small>5 avril 2015 - Guadeloupe</small></p>
+                <p class="list-group-item-text">Lorem ipsum taratata tsoin tsoin. Lorem ipsum taratata tsoin tsoin. Lorem ipsum taratata tsoin tsoin. </p>
+              </a>
+              <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">Hackp&eacute;ro Avril 2015</h4>
+                    <p class="list-group-item-text"><small>5 avril 2015 - Guadeloupe</small></p>
+                    <p class="list-group-item-text">Lorem ipsum taratata tsoin tsoin. Lorem ipsum taratata tsoin tsoin. Lorem ipsum taratata tsoin tsoin. </p>
+              </a>
+            </div>
+            <p><a class="btn btn-primary btn-lg" href="{% url 'thecalendar:form_event_add' %}" role="button">{% trans 'Add a new date' %}</a></p>
+
+        </div>
+        <div class="col-md-6">
+            <h3 class="page-header"><i class="fa fa-calendar"> </i> {% trans "Calendar" %}{% show_filter_country %}</h3>
+            <div id='calendar'></div>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock main-content %}
+
+{% block body-footer-content %}
+{% endblock body-footer-content %}
+
+
+{% block footer-js %}
+<script src="{% static 'libs/bower_components/moment/min/moment.min.js' %}"></script>
+<script src="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.js' %}"></script>
+<script src="/static/libs/bower_components/fullcalendar/dist/lang/{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|slice:":2" }}.js"></script>
+<script type="application/javascript">
+    $(document).ready(function() {
+    $('#calendar').fullCalendar({
+            contentHeight: 'auto',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultDate: '{% now "Y-m-d" %}',
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end) {
+                var eventData;
+                if (title) {
+                    eventData = {
+                        title: title,
+                        start: start,
+                        end: end
+                    };
+                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                }
+                $('#calendar').fullCalendar('unselect');
+            },
+            editable: false,
+            eventLimit: false, // allow "more" link when too many events
+            events: '{% url "thecalendar:fullcalendar_json" %}{%if request.GET.country%}?country={{ request.GET.country }}{% endif %}'
+    })
+});
+</script>
+
+{% endblock %}
+
+{% block analytics %}{% endblock %}
+
+
+

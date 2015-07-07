@@ -1,0 +1,38 @@
+{% load i18n %}
+var map = new L.map('map',{fullscreenControl: true,
+                            scrollWheelZoom: false,
+                            fullscreenControlOptions:{position: 'topleft'}
+                          }).setView([19.031, -73.048], 6);
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+}).addTo(map);
+
+
+{# comment 'put all entries geolocalizable in an array[ [marker_title, marker_lat, marker_lon, marker_popup] ]' #}
+var entries = [
+{% for entry in object_list %}
+    {% if entry.lat %}[
+        "{{ entry.name }} ({{ entry.category }})",
+        {{ entry.lat }},
+        {{ entry.lon }},
+        "<b>{% if entry.web %}<a href='{{ entry.web }}'>{{ entry.name }}</a>{% else %}{{ entry.name }}{% endif %}</b><br>{{ entry.category }}<ul class='list-inline'>{% if entry.web %}<li><a href='{{ entry.web }}'><i class='fa fa-globe'></i></a></li>{% endif %}{% if entry.twitter %}<li><a href='https://twitter.com/{{ entry.twitter }}'><i class='fa fa-twitter'></i></a></li>{% endif %}{% if entry.facebook %}<li><a href='{{ entry.facebook }}'><i class='fa fa-facebook-official'></i></a></li>{% endif %}{% if entry.googleplus %}<li><a href='{{ entry.googleplus }}'><i class='fa fa-google-plus'></i></a></li>{% endif %}{% if entry.linkedin %}<li><a href='{{ entry.linkedin }}'><i class='fa fa-linkedin'></i></a></li>{% endif %}</ul>",
+        ],
+    {% endif %}
+{% endfor %}
+];
+
+var markers = L.markerClusterGroup();
+
+for (var i = 0; i < entries.length; i++) {
+    var entry = entries[i];
+    var title = entry[0];
+    var popup = entry[3];
+    var marker = L.marker(new L.LatLng(entry[1], entry[2]), { title: title });
+    marker.bindPopup(popup);
+    markers.addLayer(marker);
+}
+
+map.addLayer(markers);
+map.fitBounds(markers.getBounds());

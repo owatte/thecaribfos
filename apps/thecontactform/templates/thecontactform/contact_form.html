@@ -1,0 +1,55 @@
+{% extends 'site_base.html' %}
+{% load i18n %}
+{% load l10n %}
+{% load staticfiles %}
+{% load thecarib_tags %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans 'Contact' %}{% endblock %}
+
+{% block head %}
+<link rel='stylesheet' href="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.css' %}"/>
+
+{% include "thedirectory/map/map_page_header.html" %}
+
+{% endblock %}
+
+
+{% block body-header-content %}
+{% endblock %}
+
+{% block main-content %}
+{# comment 'The Carib FOS Map' #}
+
+{# comment 'The Carib FOS Calendar' #}
+<section id="fos-agenda">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="text-center">{% trans 'Contact' %}</h2>
+            <hr class="star-primary">
+            <p class="text-center">
+            {% blocktrans with get_host=request.get_host %}
+            {{ get_host }} operates <a href="http://sl4.org/crocker.html">Crocker’s Rules</a>. So, you can optimize your message for information and not for being nice with us.
+            {% endblocktrans %}
+            </p>
+            <hr>
+            <form id="frm-contact" action="{{ request.get_full_path }}" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane-o"> </i> {% trans 'Envoyer' %}</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock main-content %}
+
+{% block body-footer-content %}
+{% endblock body-footer-content %}
+
+
+
+{% block analytics %}{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'page.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block head_title %}{% trans 'New Directory Entry' %}{% endblock %}
+{% block head %}
+{% include "thedirectory/map/map_page_header.html" %}
+{% endblock %}
+
+{% block main-content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="text-center">{% trans 'New Directory Entry' %}</h2>
+            <hr class="star-primary">
+            <p class="text-center">{% trans 'Add your community or your own page into the FOS Carib directory !' %}</p>
+            <hr>
+            <form id="frm-fos-entry-add" action="{{ request.get_full_path }}" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+            <div class="text-center">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i> {% trans 'Save' %}</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
+
+{% block footer-js %}
+{{ form.media }}
+{% endblock %}
+

@@ -1,0 +1,208 @@
+/*!
+ * FOS Carib based on Freelancer Bootstrap theme
+ * Start Bootstrap - Freelancer Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+
+.portfolio-modal .modal-content {
+    text-align: left;
+}
+
+legend{
+    font-weight: bold;
+}
+.leaflet-popup-content-wrapper {
+    padding: 1px;
+    text-align: left;
+    border-radius: 0px;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #FFF none repeat scroll 0% 0%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+#fos-map{
+    background-color: #F1EEE8;
+}
+
+.twitter:hover{
+    color:  #1dcaff!important;
+}
+
+.sidebar-pane-title{
+    font-size: 2em;
+    font-weigt: 500;
+}
+
+.fa-mass{
+    font-size:1000%!important;
+}
+
+.twitter-share, .twitter-share:active{
+    color:#fff;
+}
+.twitter-social{
+    color:#00aced;
+}
+.twitter-social:hover{
+    color:#1dcaff;
+}
+
+.twitter-share .fa-twitter, twitter-share:active .fa-twitter{
+    color:#00aced;
+}
+.twitter-share:hover .fa-square{
+    color:#00aced;
+}
+.twitter-share:hover .fa-twitter{
+    color:#fff;
+}
+.facebook-share, .facebook-share:active{
+    color:#fff;
+}
+.facebook-social, .facebook-social:active{
+    color:#3b5998;
+}
+.facebook-social:hover{
+    color:#8b9dc3;
+}
+
+.facebook-share .fa-facebook, .facebook-share:active .fa-facebook{
+    color:#3b5998;
+}
+.facebook-share:hover .fa-square{
+    color:#3b5998;
+}
+.facebook-share:hover .fa-facebook{
+    color:#fff;
+}
+.googleplus-share, .googleplus-share:active{
+    color:#fff;
+}
+.googleplus-social{
+    color:#d34836;
+}
+.linkedin-social:hover{
+    color:#00a0dc;
+}
+.googleplus-share .fa-google-plus, .googleplus-share:active .fa-google-plus{
+    color:#d34836;
+}
+.googleplus-share:hover .fa-square{
+    color:#d34836;
+}
+.googleplus-share:hover .fa-google-plus{
+    color:#fff;
+}
+.linkedin-share, .linkedin-share:active{
+    color:#fff;
+}
+.linkedin-social{
+    color:#0077b5;
+}
+.linkedin-share .fa-linkedin, .linkedin-share:active .fa-linkedin{
+    color:#0077b5;
+}
+.linkedin-share:hover .fa-square{
+    color:#0077b5;
+}
+.linkedin-share:hover .fa-linkedin{
+    color:#fff;
+}
+
+.hp a:hover{
+    color: #fff !important;
+    text-decoration:none;
+}
+
+.hp a{
+    color:#2c3e50 !important;
+    text-decoration:none;
+
+}
+
+.alert-thecaribfos {
+    background-color: #18bc9c;
+    border-color: #18bc9c;
+    color: #FFF;
+}
+.alert-thecaribfos p{
+    font-size: medium;
+    padding-bottom: 5px;
+}
+
+.alert-thecaribfos a{
+    font-style:underline;
+    color: #FFF;
+}
+
+.btn-twitter {
+    color: #fff;
+    background-color: #00aced;
+    border-color: #00aced;
+}
+
+.btn-twitter:hover {
+    color: #fff;
+    background-color: #1dcaff;
+    border-color: #1dcaff;
+}
+
+.panel-heading > .social-links a {
+  text-decoration: none;
+}
+
+.panel-heading > .social-links .fa-stack {
+  font-size: 70%;
+  vertical-align: top;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-bar a:first-child, .leaflet-bar a:last-child, .sidebar, .sidebar .btn{
+  border-radius: 0;
+}
+
+.page-map .leaflet-bar.leaflet-control > a {
+  font-size:36px;
+  width:36px;
+  height:36px;
+  line-height:36px;
+  color:#999;
+}
+
+.sidebar {
+  top: 120px;
+  right:10px;
+  left:auto;
+  z-index:999;
+}
+
+.sidebar-map .leaflet-left {
+  left:0;
+}
+
+.page-map #map {
+  top:110px;
+}
+
+.page-map #main-content {
+  overflow-x: hidden;
+}
+
+.page-map footer {
+  display:none;
+}
+
+@media (max-width: 767px) {
+  .page-map #map {
+    top:59px;
+  }
+  .sidebar-map {
+    margin-left:0;
+  }
+  .sidebar {
+    top:60px;
+    right:0;
+  }
+}

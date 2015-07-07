@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-17 16:58-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: autocomplete_light_registry.py:11
+msgid "Keywords"
+msgstr ""
+
+#: forms.py:23
+msgid "Organization"
+msgstr ""
+
+#: forms.py:24
+msgid "Organization name"
+msgstr ""
+
+#: forms.py:27
+msgid "Category"
+msgstr ""
+
+#: forms.py:28
+msgid "Tags"
+msgstr ""
+
+#: forms.py:31
+msgid "Contact Email"
+msgstr ""
+
+#: forms.py:31
+msgid "Web site URL"
+msgstr ""
+
+#: forms.py:37
+msgid "Location"
+msgstr ""
+
+#: forms.py:38
+msgid "Location latitude"
+msgstr ""
+
+#: forms.py:39
+msgid "Location longitude"
+msgstr ""
+
+#: forms.py:48
+msgid "Social web"
+msgstr ""
+
+#: forms.py:49 models.py:53
+msgid "Twitter account"
+msgstr ""
+
+#: forms.py:50 models.py:57
+msgid "Facebook page"
+msgstr ""
+
+#: forms.py:51
+msgid "Google+ page"
+msgstr ""
+
+#: forms.py:52 models.py:65
+msgid "LinkedIn page"
+msgstr ""
+
+#: models.py:14 models.py:31
+msgid "Name"
+msgstr ""
+
+#: models.py:16 models.py:33
+msgid "Slug"
+msgstr ""
+
+#: models.py:18 models.py:43
+msgid "Description"
+msgstr ""
+
+#: models.py:41
+msgid "Tag(s)"
+msgstr ""
+
+#: models.py:45
+msgid "Address"
+msgstr ""
+
+#: models.py:46
+msgid "Email"
+msgstr ""
+
+#: models.py:47
+msgid "Email are not published on the website."
+msgstr ""
+
+#: models.py:48
+msgid "Web"
+msgstr ""
+
+#: models.py:50
+msgid "Latitude"
+msgstr ""
+
+#: models.py:51
+msgid "Longitude"
+msgstr ""
+
+#: models.py:61
+msgid "Google plus page"
+msgstr ""
+
+#: templates/thedirectory/form_entry_add.html:6
+#: templates/thedirectory/form_entry_add.html-a-supprimer.html:21
+msgid "Save"
+msgstr ""
+
+#: templates/thedirectory/form_entry_add.html-a-supprimer.html:22
+msgid "Return to the page"
+msgstr ""
+
+#: templates/thedirectory/map/map_tagcloud_filter.html:6
+#: templates/thedirectory/map/page_map.html:39
+#: templates/thedirectory/map/page_map.html:56
+#: templates/thedirectory/map/page_map.html:69
+msgid "Localize it !"
+msgstr ""
+
+#: templates/thedirectory/map/map_tagcloud_filter.html:11
+#: templates/thedirectory/map/page_map.html:65
+msgid "Show all tags"
+msgstr ""
+
+#: templates/thedirectory/map/page_map.html:66
+#: templates/thedirectory/map/page_map.html:72
+msgid "Add new dot on map"
+msgstr ""
+
+#: templates/thedirectory/page_form_entry_add.html:15
+msgid "Subnit New Entry"
+msgstr ""

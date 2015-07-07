@@ -1,0 +1,19 @@
+{% extends 'include/page_panel.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content-title %}{{ flatpage.title }}{% endblock %}
+
+{% block panel-title %}<a href="/">The Caribbean FOS </a> / {{ flatpage.title }}{% endblock %}
+
+{% block panel-body %}
+    {{ flatpage.content }}
+{% endblock %}
+
+{% block panel-footer %}The caribbean free open source organizations and people directory{% endblock %}
+
+{% block see-also %}
+    <ul>
+        <li><a href="thecarib:country_list">{% trans 'Carribean' %}</a></li>
+        <li><a href="thecalendar:category_list">{% trans 'Events categories' %}</a></li>
+{% endblock %}</ul>

@@ -1,0 +1,108 @@
+{% extends 'site_base.html' %}
+{% load i18n %}
+{% load l10n %}
+{% load staticfiles %}
+{% load tag_cloud %}
+{% load crispy_forms_tags %}
+{% block head %}
+{% load slug2js %}
+{% include "thedirectory/map/map_page_header.html" %}
+<link rel='stylesheet' href="{% static 'css/leaflet-sidebar.css' %}"/>
+<script src="{% static 'js/leaflet-sidebar.min.js' %}"></script>
+
+<style>
+
+       #map {
+            position:absolute;
+            z-index:1;
+            top:63px;
+            bottom:0;
+            left:0;
+            right:0;
+
+            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+</style>
+{% endblock %}
+
+{% block body-header-content %}
+
+
+{% endblock %}
+
+{% block body_class %}page-map{% endblock %}
+
+{% block main-content %}
+<div id="map" class="sidebar-map"></div>
+<section id="fos-map">
+
+    <div class="container">
+        <div class="row" >
+            <div class="col-lg-12 text-center">
+                <h2>{% trans "Localize it !" %}</h2>
+                <hr class="star-primary">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <ul class="sidebar-tabs" role="tablist">
+            <li><a href="#tags" role="tab"><i class="fa fa-tags"></i></a></li>
+            <li><a href="#add-a-dot" role="tab"><i class="fa fa-cloud-upload"></i></a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content active">
+
+            <div class="sidebar-pane" id="tags"><h2 class="sidebar-pane-title">{% trans "Localize it !" %}</h2>
+            <h3 class="lead">Filter by Tags</h3>
+                {% tag_cloud_for_model 'thedirectory.Entry' as tags %}
+                <ul>
+                {% for tag in tags %}
+                    <li><a id="tag_{{ tag.slug|slug2js }}" href="#" >#{{ tag.name }}</a></li>
+                {% endfor %}
+                </ul>
+
+                <a class="btn btn-primary btn-sm" id="tags_show_all" role="button">{% trans 'Show all tags' %}</a>
+                <a class="btn btn-default btn-sm" href="{% url 'thedirectory:form_entry_add' %}" role="button">{% trans 'Add new dot on map' %}</a>
+
+            </div>
+            <div class="sidebar-pane" id="add-a-dot"><h2 class="sidebar-pane-title">{% trans "Localize it !" %}</h2>
+            <h3 class="lead">Add new dot on map</h3>
+            <h4>{% trans 'Organization' %}</h4>
+            <p>{% trans 'Add your community into the carib FOS directory&nbsp;!' %}</p>
+            <a class="btn btn-primary btn-block" href="{% url 'thedirectory:form_entry_add' %}" role="button">{% trans 'Add new carib FOS organization or people' %}</a>
+            <hr>
+            <h4>{% trans 'Event' %}</h4>
+            <p>{% trans 'Add your event into the carib FOS calendar&nbsp;!' %}</p>
+            <a class="btn btn-default btn-block" href="{% url 'thecalendar:form_event_add' %}" role="button">{% trans 'Add new carib FOS event' %}</a>
+            <hr>
+            <h4><span class="fa fa-twitter"> </span> {% trans 'Twitter' %}</h4>
+            <p>{% trans 'Follow and RT the carib FOS en twitter !' %}</p>
+            <a class="btn btn-info btn-block" href="https://twitter.com/caribfos/" role="button"><span class="fa fa-twitter"> </span> @caribfos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-lg-12 text-center">
+        </div>
+    </div>
+</section>
+{% endblock main-content %}
+
+{% block body-footer-content %}
+{% endblock body-footer-content %}
+
+
+{% block footer-js %}
+{% include "thedirectory/map/map_page_footer.html" %}
+{% endblock %}
+
+{% block analytics %}{% endblock %}
+
+
+

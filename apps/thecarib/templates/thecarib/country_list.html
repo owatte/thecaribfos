@@ -1,0 +1,47 @@
+{% extends 'include/page_panel.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Caribbean" %}{% endblock %}
+
+{% block head %}
+{% include "thedirectory/map/map_page_header.html" %}
+{% endblock %}
+
+{% block content-title %}{% trans "Caribbean" %}{% endblock %}
+
+{% block panel-title %}{% trans 'Caribbean' %}{% endblock %}
+
+
+{% block panel-body %}
+    <div class="col-lg-6">
+    <ul>{% for country in countries %}
+        <li><a href="{% url 'thecarib:country_detail' slug=country.iso %}">{{ country.name }}</a>
+        </li>
+    {% endfor %}</ul>
+    </div>
+    <div class="col-lg-6">
+        <div class="alert alert-thecaribfos" role="alert">
+            <h4>Caribbean</h4>
+            <p>The <b>Caribbean</b> (<i>/ˌkærɨˈbiːən/</i> or <i>/kəˈrɪbiən/</i>; Spanish: <i>Caribe</i>; Dutch: <i>Caraïben</i> ; French: <i>Caraïbe</i> or more commonly <i>Antilles</i>) is a region that consists of the Caribbean Sea, its islands (some surrounded by the Caribbean Sea and some bordering both the Caribbean Sea and the North Atlantic Ocean), and the surrounding coasts. The region is southeast of the Gulf of Mexico and the North American mainland, east of Central America, and north of South America.</p>
+            <p class="small">Situated largely on the Caribbean Plate, the region comprises more than 700 islands, islets, reefs, and cays. These islands generally form island arcs that delineate the eastern and northern edges of the Caribbean Sea. The Caribbean islands, consisting of the Greater Antilles on the north and the Lesser Antilles on the south and east (including the Leeward Antilles), are part of the somewhat larger <b>West Indies</b> grouping, which also includes the Lucayan Archipelago (comprising The Bahamas and Turks and Caicos Islands) north of the Greater Antilles and Caribbean Sea. In a wider sense, the mainland countries of Belize, Guyana, and Suriname may be included.</p>
+            <p class="small">Geopolitically, the Caribbean islands are usually regarded as a subregion of North America and are organized into 30 territories including sovereign states, overseas departments, and dependencies.</p>
+            <p class="small">source : <a href="https://en.wikipedia.org/wiki/Caribbean">wikipedia.org</a></p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block osmmap %}<div style="height:350px;" id="map"></div><br>{% endblock %}
+
+{% block panel-footer %}The caribbean free open source organizations and people directory{% endblock %}
+
+{% block see-also %}
+    <ul>
+        <li><a href="{% url 'thedirectory:category_list' %}">{% trans 'The directory entries categories' %}</a></li>
+        <li><a href="{% url 'thecalendar:category_list' %}">{% trans 'The events categories' %}</a></li>
+{% endblock %}</ul>
+
+{% block footer-js %}
+{% include "thedirectory/map/map_page_footer.html" %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load tag_cloud %}
+<div class="container">
+    <div class="row" >
+        <div class="col-lg-12 text-center">
+            <h2>{% trans "Localize it !" %}</h2>
+            <hr class="star-primary">
+            {% tag_cloud_for_model 'thedirectory.Entry' as tags %}
+            {% for tag in tags %}
+            <a id="tag_{{ tag.pk }}" href="#" >#{{ tag.name }}</a>
+            {% endfor %}<a id="tags_show_all" href="#">{% trans 'Show all tags' %}</a>
+        </div>
+    </div>
+</div>
+<div class="row" >
+    <div class="col-lg-12 text-center">
+        <div id="map" style="height: 750px"></div>
+    </div>
+</div>
+
+
+
+

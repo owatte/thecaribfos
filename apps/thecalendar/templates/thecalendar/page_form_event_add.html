@@ -1,0 +1,80 @@
+{% extends 'site_base.html' %}
+{% load i18n %}
+{% load l10n %}
+{% load staticfiles %}
+{% load thecarib_tags %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans 'Submit new date' %}{% endblock %}
+
+{% block head %}
+<link rel='stylesheet' href="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.css' %}"/>
+
+{% include "thedirectory/map/map_page_header.html" %}
+
+{% endblock %}
+
+
+{% block body-header-content %}
+{% endblock %}
+
+{% block main-content %}
+{# comment 'The Carib FOS Map' #}
+
+{# comment 'The Carib FOS Calendar' #}
+<section id="fos-agenda">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="text-center">{% trans 'Submit new date' %}</h2>
+            <hr class="star-primary">
+            <p class="text-center">{% trans 'Add your own event into the FOS Carib agenda !' %}</p>
+            <hr>
+            <form id="frm-fos-entry-add" action="{{ request.get_full_path }}" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+
+            <div class="text-center">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i> {% trans 'Save' %}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> {% trans 'Return to the page' %}</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+{% endblock main-content %}
+
+{% block body-footer-content %}
+{% endblock body-footer-content %}
+
+
+{% block footer-js %}
+    {# Custom Full calendar #}
+<!--
+    <script src="{% static 'libs/bower_components/moment/min/moment.min.js' %}"></script>
+    <script src="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.js' %}"></script>
+    <script src="/static/libs/bower_components/fullcalendar/dist/lang/{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}.js"></script>
+    {% include "thecalendar/fullcalendar_page_footer.html" %}
+-->
+<!--
+    <script src="{% static 'libs/bower_components/jquery-form/jquery.form.js' %}"></script>
+-->
+
+<script src="{% static 'libs/bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'libs/bower_components/jquery-ui/ui/datepicker.js' %}"></script>
+
+<script type="text/javascript">
+
+$('.datepicker').datepicker();
+$('#fosModal').on('hidden.bs.modal', function () {
+  $(this).removeData('bs.modal');
+})
+</script>
+
+{{ form.media }}
+
+{% endblock %}
+
+{% block analytics %}{% endblock %}

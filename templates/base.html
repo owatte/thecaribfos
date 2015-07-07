@@ -1,0 +1,93 @@
+{% load staticfiles %}{% load i18n %}<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8">
+    <title>{% block head_title %}{% endblock %} | {{ CURRENT_SITE.name|striptags }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="application-name" content="{{ CURRENT_SITE.name|striptags }}" >
+    <meta name="author" content="Olivier WATTE - GwadaLUG">
+    <meta name="generator" content="Django">
+    <meta name="description" content="{% block meta_description %}{% if CURRENT_SITE.config %}{% if CURRENT_SITE.config.short_description %}{{ CURRENT_SITE.config.short_description|striptags|truncatechars:200 }}{% endif %}{% endif %}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{% if CURRENT_SITE.config %}{% if CURRENT_SITE.config.keywords %}{{ CURRENT_SITE.config.keywords|striptags }}{% endif %}{% endif %}{% endblock %}">
+    <link href="{% static 'libs/startbootstrap-freelancer-1.0.3/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'libs/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'libs/startbootstrap-freelancer-1.0.3/css/freelancer.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'libs/startbootstrap-freelancer-1.0.3/font-awesome/css/font-awesome.min.css' %}">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href='{% static "/static/favicons/favicon.ico" %}' />
+    {# if old ie #}
+    {% include "include/warning_old_ie.html" %}
+    {# If js is unactivate #}
+    {% include "include/warning_no_js.html" %}
+    {% block head %}{% endblock %}
+    <link href="{% static 'foscarib.css' %}" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/static/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/static/favicons/manifest.json">
+    <link rel="shortcut icon" href="/static/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body id="page-top" class="{% block body_class %}index{% endblock %}">
+    {% block body %}{% endblock %}
+    {% block footer %}{% endblock %}
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+    <!--[if lt IE 9]>
+    <script src='{% static "html5shiv/html5shiv.min.js" %}'></script >
+    <script src='{% static "html5shiv/html5shiv-printshiv.min.js" %}'></script >
+    <script src='{% static "respond/respond.min.js" %}'></script >
+    <![endif]-->
+    {# jQuery #}
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/jquery.js' %}"></script>
+    {# Bootstrap Core JavaScript #}
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/bootstrap.min.js' %}"></script>
+    {# jQuery autocomplete_light #}
+    {% include 'autocomplete_light/static.html' %}
+    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+<!--
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+-->
+    {# comment % include 'autocomplete_light/static.html' % #}
+    {# Plugin JavaScript #}
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/classie.js' %}"></script>
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/cbpAnimatedHeader.js' %}"></script>
+    {# Contact Form JavaScript #}
+<!--
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/jqBootstrapValidation.js' %}"></script>
+-->
+<!--
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/contact_me.js' %}"></script>
+-->
+    {# Custom Theme JavaScript #}
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/freelancer.js' %}"></script>
+    {% block footer-js %}
+        {# Custom Full calendar #}
+        <script src="{% static 'libs/bower_components/moment/min/moment.min.js' %}"></script>
+        <script src="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.js' %}"></script>
+        <script src="/static/libs/bower_components/fullcalendar/dist/lang/{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}.js"></script>
+        {% include "thecalendar/full_calendar_page_footer_modal.html" %}
+        {# directory / map #}
+        {% include "thedirectory/map/map_page_footer.html" %}
+    {% endblock %}
+    {% block analytics %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'page.html' %}
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block main-content %}
+
+<section>
+    <div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-center">{% block content-title %}{% trans "Categories" %}{% endblock %}</h2>
+                <hr class="star-primary">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% block panel-title %}{% trans 'Categories of actors' %}{% endblock %}</h3>
+                    </div>
+                    <div class="panel-body">{% block panel-body %}
+                        <ul>{% for category in categories %}
+                            <li><a href="{ % url 'thedirectory:category_detail' category.iso % }">{{ category.name }}</a>
+                            </li>
+                        {% endfor %}</ul>
+                    {% endblock %}</div>
+                    <div class="panel-footer">{% block panel-footer %}
+                        The caribbean free open source organizations and people directory
+                    {% endblock %}</div>
+                </div>
+                {% block post-panel %}{% endblock %}
+            </div>
+        </div>
+        {% block osmmap %}{% endblock %}
+        <div class="row">
+            <div class="col-md-6">
+                <h4>{% trans 'See Also' %}</h4>
+                {% block see-also %}<ul>
+                    <li><a href="thecarib:country_list">{% trans 'The countries' %}</a></li>
+                    <li><a href="thecalendar:category_list">{% trans 'The events categories' %}</a></li>
+                </ul>{% endblock %}
+            </div>
+            <div class="col-md-6">
+                 {% include 'share_this_page.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main-content %}

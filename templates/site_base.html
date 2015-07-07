@@ -1,0 +1,164 @@
+{% extends "body.html" %}{% load i18n %}{% load static %}
+
+{% block head_title %}{% trans "Home" %}{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block navbar-menu %}
+    <li class="page-scroll">
+        <a href="{% url 'thedirectory:map' %}">{% trans 'Map' %}</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'thecalendar:agenda' %}">{% trans 'Calendar' %}</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'thecarib:country_list' %}">{% trans 'Caribbean' %}</a>
+    </li>
+    <li>
+        <a href="https://www.twitter.com/thecaribfos/" class="twitter" title="{% trans 'follow' %} @thecaribfos">&nbsp;<span class="fa fa-twitter twitter">&nbsp;</span></a>
+    </li>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+{% endblock %}
+
+{% block body-header-content %}
+<!--
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <img class="img-responsive" src="{# comment % static 'libs/startbootstrap-freelancer-1.0.3/img/profile.png' % #}" alt="">
+                <div class="intro-text">
+                    <span class="name">{{ CURRENT_SITE.name }}</span>
+                    <hr class="star-light">
+                    <p class="skills">Caribbean Free Open Source software / hardware / data / networks ...</p>
+                    <div class="text-center">
+                        <br>
+                        <span class="page-scroll"><a href="#search" class="btn btn-primary btn-lg" role="button">{% trans "Ok, let me in ..." %}</a></span>
+                        &nbsp;
+                        <a href="https://www.twitter.com/caribfos/" class="btn btn-info btn-lg" role="button" title="{% trans 'follow' %} @caribfos" ><span class="fa fa-twitter"> </span> @caribfos</a>
+                        <a href="#calendarModal" class="btn btn-warning btn-lg" role="button" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            ici oui l&agrave;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+{% endblock %}
+
+{% block main-content %}{% endblock %}
+
+{% block body-footer-content %}
+    <!-- Contribute Section -->
+<!--
+    <section class="success" id="contribute">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>{% trans "Contribute" %}</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <h3>
+                        <span class="fa-stack fa-lg" style="font-size:500%;">
+                          <i class="fa fa-calendar fa-stack-1x"></i>
+                        </span>
+                        <br>{% trans "CaribFOS Calendar" %}
+                    </h3>
+                    <p class="lead">Tell us any event, local or international, involving free open source caribbean communities and we shall tell it to the world !</p>
+                    <p><a class="btn btn-primary btn-lg" href="{% url 'thedirectory:form_entry_add' %}" data-toggle="modal" role="button" data-target="#fosModal"><i class="fa fa-plus"></i> {% trans 'Submit a new event' %}</a></p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h3>
+                        <span class="fa-stack fa-lg" style="font-size:500%;">
+                          <i class="fa fa-folder fa-stack-1x"></i>
+                        </span>
+                        <br>{% trans "CaribFOS Directory" %}
+                    </h3>
+                    <p class="lead">You know a caribbean organization involved in Free Open Source software/hardware/data/networks ? Add it in the directory !</p>
+                    <p><a class="btn btn-success btn-lg" href="{% url 'thecalendar:form_event_add' %}" data-toggle="modal" role="button" data-target="#fosModal"> <i class="fa fa-plus"></i> {% trans 'Submit a new directory entry' %}</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+{% endblock body-footer-content %}
+
+{% block nav %}{% endblock %}
+
+
+
+{% block footer %}
+    <!-- Footer -->
+    <footer>
+        {% block footer-above %}
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>The Carib FOS</h3>
+                        <ul>
+                            <li><a href="{% url 'thecarib:country_list' %}">{% trans 'Caribbean' %}</a></li>
+                            <li><a href="{% url 'thedirectory:form_entry_add' %}">{% trans 'Add a new people or organization' %}</a></li>
+                            <li><a href="{% url 'thecalendar:form_event_add' %}">{% trans 'Add a new event' %}</a></li>
+                            <li><a href="{% url 'thedirectory:map' %}">{% trans 'The Carib FOS Map' %}</a></li>
+                            <li><a href="{% url 'thecalendar:agenda' %}">{% trans 'The Carib FOS Calendar' %}</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Participate</h3>
+                        <ul>
+                            <li><a href="{% url 'thedirectory:form_entry_add' %}">{% trans 'Add a new people or organization' %}</a></li>
+                            <li><a href="{% url 'thecalendar:form_event_add' %}">{% trans 'Add a new event' %}</a></li>
+                            <li><a href="{% url 'thecontactform:contact-form' %}">{% trans 'Website feedback' %}</a></li>
+                            <li style="list-style-type:none;"><br><a class="btn btn-info btn-sm" href="https://twitter.com/thecaribfos/"><i class="fa fa-twitter"></i> {% trans 'Follow' %} @thecaribfos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                         <h3>About</h3>
+                        <ul>
+                            <li><a href="/en/the-project/">The Carib FOS project</a></li>
+                            <li><a href="/en/the-machinery/">The Carib FOS machinery</a></li>
+                            <li><a href="/en/privacy/">Privacy</a></li>
+                            <li><a href="/en/copyright/">Copyright</a></li>
+                            <li><a href="/en/anti-piracy-policy/">Anti-piracy policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        {% block footer-below %}
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        Copyright &copy; 2015 Olivier Watt&eacute; | funded by <a href="http://www.ipeos.com"><abbr title="Internet Protocol & Open Source">IPEOS</abbr></a> | <a href="/contact/">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </footer>
+{% endblock %}
+
+
+{% block footer-js %}
+    <script>
+    $('#fosModal').on('hidden.bs.modal', function () {
+      $(this).removeData('bs.modal');
+    })
+    </script>
+{% endblock %}
