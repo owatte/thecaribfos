@@ -8,13 +8,13 @@
 
 {% block navbar-menu %}
     <li class="page-scroll">
+        <a href="{% url 'thecarib:country_list' %}">{% trans 'Caribbean' %}</a>
+    </li>
+    <li class="page-scroll">
         <a href="{% url 'thedirectory:map' %}">{% trans 'Map' %}</a>
     </li>
     <li class="page-scroll">
         <a href="{% url 'thecalendar:agenda' %}">{% trans 'Calendar' %}</a>
-    </li>
-    <li class="page-scroll">
-        <a href="{% url 'thecarib:country_list' %}">{% trans 'Caribbean' %}</a>
     </li>
     <li>
         <a href="https://www.twitter.com/thecaribfos/" class="twitter" title="{% trans 'follow' %} @thecaribfos">&nbsp;<span class="fa fa-twitter twitter">&nbsp;</span></a>
