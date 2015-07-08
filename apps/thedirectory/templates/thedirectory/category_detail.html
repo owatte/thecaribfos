@@ -11,7 +11,7 @@
 {% block panel-title %}<a href="{% url 'thedirectory:map' %}" class="btn-link">{% trans 'The caribbean Free Open Source directory' %}</a> / {{ category.name }}{% endblock %}
 
 {% block panel-body %}
-    <h3>{{ category.name }}g</h3>
+    <h3>{{ category.name }}</h3>
     {% if category.description %}{{ category.description }}{% endif %}
     <ul>
 
