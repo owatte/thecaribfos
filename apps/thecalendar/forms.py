@@ -131,4 +131,5 @@ class EventForm(forms.ModelForm):
                 pass
         if commit:
             event.save()
+            self.save_m2m()
         return event

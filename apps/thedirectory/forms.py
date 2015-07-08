@@ -102,4 +102,5 @@ class EntryForm(autocomplete_light.ModelForm):
                 pass
         if commit:
             entry.save()
+            self.save_m2m()
         return entry
