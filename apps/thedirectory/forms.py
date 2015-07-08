@@ -7,15 +7,14 @@ from django.utils.translation import ugettext as _
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Layout, Field, Fieldset, HTML
 from crispy_forms.bootstrap import PrependedText
-
 import autocomplete_light
-
 from .models import Entry
 
 class EntryForm(autocomplete_light.ModelForm):
     @property
     def helper(self):
         helper = FormHelper()
+        helper.render_unmentioned_fields = True
         helper.form_tag = False
 
         helper.layout = Layout(
