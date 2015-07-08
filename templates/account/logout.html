@@ -1,0 +1,27 @@
+{% extends "page.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Log out" %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li class="active">{% trans "Log out" %}</li>
+{% endblock %}
+
+{% block main-content %}
+<section id="fos-user">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-center">{% trans "Log out" %}</h2>
+                <hr class="star-primary">
+                <hr>
+                <form method="POST" action="{% url "account_logout" %}">
+                    {% csrf_token %}
+                    <p>{% trans "Are you sure you want to log out?" %}</p>
+                    <button type="submit" class="btn btn-primary">{% trans "Log out" %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
