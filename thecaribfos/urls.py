@@ -7,6 +7,7 @@ from django.views.i18n import javascript_catalog
 
 import autocomplete_light.shortcuts as al
 from apps.thecalendar.models import Event
+from apps.thehomepage.views import HomePageDetailView
 
 js_info_dict = {
     'packages': ('thecaribfos.apps.thedirectory',),
@@ -15,10 +16,11 @@ js_info_dict = {
 urlpatterns = [
     # main index
     url(r'^$',
-        ListView.as_view(
-            model = Event,
-            template_name = 'home.html'
-        ),
+        #~ ListView.as_view(
+            #~ model = Event,
+            #~ template_name = 'home.html'
+        #~ ),
+        HomePageDetailView.as_view(),
         name = 'home'
     ),
     url(r'^calendar/', include("apps.thecalendar.urls", namespace="thecalendar")),
