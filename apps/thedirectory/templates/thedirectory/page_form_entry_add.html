@@ -6,6 +6,7 @@
 {% block head_title %}{% trans 'New Directory Entry' %}{% endblock %}
 {% block head %}
 {% include "thedirectory/map/map_page_header.html" %}
+<link href="{% static 'libs/bower_components/bootstrap-markdown/css/bootstrap-markdown.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block main-content %}
@@ -30,5 +31,13 @@
 
 {% block footer-js %}
 {{ form.media }}
+
+<script src="{% static 'libs/bower_components/bootstrap-markdown/js/bootstrap-markdown.js' %}"></script>
+<script src="{% static 'libs/bower_components/to-markdown/dist/to-markdown.js' %}"></script>
+<script src="{% static 'libs/handly_grabbed_components/markdown.js' %}"></script>
+
+<script type="text/javascript">
+$("#id_description").markdown({autofocus:false,savable:false})
+</script>
 {% endblock %}
 

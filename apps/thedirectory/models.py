@@ -30,7 +30,8 @@ class Entry(models.Model):
     category = models.ForeignKey(Category)
     tags = TaggableManager(verbose_name = _("Tag(s)"),
                            blank=True)
-    description = models.TextField(_("Description"))
+    description = models.TextField(_("Description"),
+                                   help_text=_("Use Markdown to format you description text"))
     address = models.TextField(_("Address"), null=True, blank=True)
     email = models.EmailField(_("Email"),
                               help_text=_("Email are not published on the website."))

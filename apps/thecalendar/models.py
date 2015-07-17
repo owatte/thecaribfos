@@ -56,7 +56,8 @@ class Event(models.Model):
     allday = models.BooleanField(_("All day"))
     summary = models.CharField(_("Title"),
                                max_length=75)
-    description = models.TextField(_("Description"))
+    description = models.TextField(_("Description"),
+                                   help_text=_("Use Markdown to format you description text"))
     email = models.EmailField(_("Email"),
                               help_text=_("Email are not published on the website."))
     web = models.URLField(_("Web"),

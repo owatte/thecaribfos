@@ -9,9 +9,8 @@
 
 {% block head %}
 <link rel='stylesheet' href="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.css' %}"/>
-
 {% include "thedirectory/map/map_page_header.html" %}
-
+<link href="{% static 'libs/bower_components/bootstrap-markdown/css/bootstrap-markdown.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 
@@ -64,17 +63,19 @@
 
 <script src="{% static 'libs/bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
 <script src="{% static 'libs/bower_components/jquery-ui/ui/datepicker.js' %}"></script>
-
 <script type="text/javascript">
-
 $('.datepicker').datepicker();
 $('#fosModal').on('hidden.bs.modal', function () {
   $(this).removeData('bs.modal');
 })
 </script>
-
 {{ form.media }}
-
+<script src="{% static 'libs/bower_components/bootstrap-markdown/js/bootstrap-markdown.js' %}"></script>
+<script src="{% static 'libs/bower_components/to-markdown/dist/to-markdown.js' %}"></script>
+<script src="{% static 'libs/handly_grabbed_components/markdown.js' %}"></script>
+<script type="text/javascript">
+$("#id_description").markdown({autofocus:false,savable:false})
+</script>
 {% endblock %}
 
 {% block analytics %}{% endblock %}

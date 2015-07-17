@@ -8,6 +8,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Layout, Field, Fieldset, HTML
 from crispy_forms.bootstrap import PrependedText
 import autocomplete_light
+#~ from django_bootstrap_markdown.widgets import MarkdownInput
+
 from .models import Entry
 
 class EntryForm(autocomplete_light.ModelForm):
@@ -79,7 +81,8 @@ class EntryForm(autocomplete_light.ModelForm):
         exclude = ['slug']
         widgets = {
             'address': forms.Textarea(attrs={'cols':10, 'rows':3}),
-            'description': forms.Textarea(attrs={'cols': 10, 'rows': 4}),
+            'description': forms.Textarea(attrs={'cols': 10, 'rows': 6}),
+            #~ 'description' : MarkdownInput(attrs={'cols': 10, 'rows': 4}),
             'tags':autocomplete_light.widgets.TextWidget('TagAutocomplete'),
             'lat':forms.HiddenInput(),
             'lon':forms.HiddenInput(),

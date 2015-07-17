@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Field, HTML, Layout, Fieldset
 from crispy_forms.bootstrap import PrependedText
+
 from .models import Event
 
 
@@ -27,7 +28,7 @@ class EventForm(forms.ModelForm):
                 Div(Div(Field('tags', placeholder=_("keyword, keyword 1, key word 2")), css_class="col-sm-12"),
                     css_class="row"
                 ),
-                Div(Div('description', css_class="col-sm-12"),
+                Div(Div(Field('description', help_text=_('tada')), css_class="col-sm-12"),
                     css_class="row"
                 ),
             ),
@@ -104,7 +105,8 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         widgets = {
-            'description': forms.Textarea(attrs={'cols': 10, 'rows': 3}),
+            #'description' : MarkdownInput(attrs={'cols': 10, 'rows': 4}),
+            'description': forms.Textarea(attrs={'cols': 10, 'rows': 6}),
             'address': forms.Textarea(attrs={'cols': 10, 'rows': 3}),
             'dtstart': forms.DateInput(attrs={'class': 'datepicker'}),
             'dtend': forms.DateInput(attrs={'class': 'datepicker'}),

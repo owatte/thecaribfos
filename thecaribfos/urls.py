@@ -43,6 +43,7 @@ urlpatterns = [
         TemplateView.as_view(template_name="include/success.html"),
         name='success'
     ),
+    #~ url(r'^markdown/', include('django_bootstrap_markdown.urls')),
     url(r'^autocomplete/', include('autocomplete_light.urls')),
     url(r'^jsi18n/$', javascript_catalog, js_info_dict),
     #~ url(r'^(?P<url>.*/)$', views.flatpage),
