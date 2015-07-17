@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load django_markdown %}
-{% block head_title %}{{ event.name }}{% endblock %}
+{% block head_title %}{{ event.summary }}{% endblock %}
 
 {% block head %}
 {% include "thedirectory/map/map_page_header.html" %}
