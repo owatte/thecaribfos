@@ -23,16 +23,6 @@ urlpatterns = [
         name = 'fullcalendar_json'
     ),
 
-
-    #~ #url(r'^(?P<year>d{4})/$', YearArchiveView.as_view(template_name='events/index.html', model=Event)),
-    # index (fullcalendar)
-    #~ url(r'^$',
-        #~ ListView.as_view(model = Event,
-                         #~ template_name = 'thecalendar/fullcalendar.html'
-        #~ ),
-        #~ name="fullcalendar"
-    #~ ),
-
     # form add entry
     url(r'^event/add/$',
         login_required(
@@ -47,7 +37,8 @@ urlpatterns = [
     # event details
     url(r'^(?P<slug>[-\w]+)/$',
         DetailView.as_view(model = Event,
-                           template_name ='thecalendar/details.html'
+                           context_object_name='event',
+                           template_name ='thecalendar/event_detail.html'
         ),
         name = 'event_detail'
     ),
