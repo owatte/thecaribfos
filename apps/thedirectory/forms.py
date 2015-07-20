@@ -13,6 +13,11 @@ import autocomplete_light
 from .models import Entry
 
 class EntryForm(autocomplete_light.ModelForm):
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(EntryForm, self).__init__(*args, **kwargs)
+
     @property
     def helper(self):
         helper = FormHelper()
@@ -78,7 +83,7 @@ class EntryForm(autocomplete_light.ModelForm):
 
     class Meta:
         model = Entry
-        exclude = ['slug']
+        exclude = ['slug', 'creation_user']
         widgets = {
             'address': forms.Textarea(attrs={'cols':10, 'rows':3}),
             'description': forms.Textarea(attrs={'cols': 10, 'rows': 6}),
@@ -104,6 +109,7 @@ class EntryForm(autocomplete_light.ModelForm):
             except Entry.DoesNotExist:
                 pass
         if commit:
+            entry.creation_user = self.user
             entry.save()
             self.save_m2m()
         return entry

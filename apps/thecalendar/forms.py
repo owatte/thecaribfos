@@ -16,7 +16,6 @@ class EventForm(forms.ModelForm):
     def __init__(self, user, *args, **kwargs):
         self.user = user
         super(EventForm, self).__init__(*args, **kwargs)
-        #user = kwargs.pop('user', None)
 
     @property
     def helper(self):
@@ -84,7 +83,6 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         widgets = {
-            #'description' : MarkdownInput(attrs={'cols': 10, 'rows': 4}),
             'description': forms.Textarea(attrs={'cols': 10, 'rows': 6}),
             'address': forms.Textarea(attrs={'cols': 10, 'rows': 3}),
             'dtstart': forms.DateInput(attrs={'class': 'datepicker'}),
@@ -93,7 +91,7 @@ class EventForm(forms.ModelForm):
             'lon':forms.HiddenInput(),
        }
         #fields = "__all__"
-        exclude =['slug', 'pub_status', 'status', 'sequence']
+        exclude =['slug', 'pub_status', 'status', 'sequence', 'creation_user']
 
     class Media:
         js = ["/static/thedirectory/js/map_mini.js"]

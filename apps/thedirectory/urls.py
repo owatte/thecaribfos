@@ -2,9 +2,10 @@ from django.conf.urls import patterns, include, url
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, CreateView, ListView, TemplateView
+
 from .forms import EntryForm
 from .models import Category, Entry
-from .views import CategoryDetailView, json_map_entries_by_tags
+from .views import CategoryDetailView, EntryCreateView, json_map_entries_by_tags
 
 urlpatterns = [
 
@@ -20,11 +21,7 @@ urlpatterns = [
     # form add entry
     url(r'^entry/add/$',
         login_required(
-            CreateView.as_view(
-                form_class=EntryForm,
-                template_name='thedirectory/page_form_entry_add.html',
-                success_url=reverse_lazy('success')
-            )
+            EntryCreateView.as_view()
         ),
         name="form_entry_add",
     ),

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from apps.thecarib.models import Country
 
@@ -30,6 +31,7 @@ class Entry(models.Model):
     category = models.ForeignKey(Category)
     tags = TaggableManager(verbose_name = _("Tag(s)"),
                            blank=True)
+    creation_user = models.ForeignKey(User)
     description = models.TextField(_("Description"),
                                    help_text=_("Use Markdown to format you description text"))
     address = models.TextField(_("Address"), null=True, blank=True)

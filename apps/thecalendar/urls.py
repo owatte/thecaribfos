@@ -22,7 +22,7 @@ urlpatterns = [
         name = 'fullcalendar_json'
     ),
 
-    # form add entry
+    # form add event
     url(r'^event/add/$',
             login_required(EventCreateView.as_view()
         ),

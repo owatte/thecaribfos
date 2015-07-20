@@ -1,11 +1,12 @@
 import json
 from django.shortcuts import render
-from django.views.generic import DetailView
-
+from django.views.generic import CreateView, DetailView
 import django.http as http
 import django.shortcuts as shortcuts
 from django.http import HttpResponse
+from django.core.urlresolvers import reverse_lazy
 
+from .forms import EntryForm
 from .models import Category, Entry
 
 class CategoryDetailView(DetailView):
@@ -19,7 +20,15 @@ class CategoryDetailView(DetailView):
 
         return context
 
+class EntryCreateView(CreateView):
+    form_class = EntryForm
+    template_name = 'thedirectory/page_form_entry_add.html'
+    success_url=reverse_lazy('success')
 
+    def get_form_kwargs(self):
+        kwargs = super(EntryCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs.copy()
 
 def json_map_entries_by_tags(request, tag):
     '''generates a json with list of pk for tag map filter
