@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
-
+from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 
 from apps.thecarib.models import Country
@@ -47,6 +47,7 @@ class Event(models.Model):
     category = models.ForeignKey(Category)
     tags = TaggableManager(verbose_name = _("Tag(s)"),
                            blank=True)
+    creation_user = models.ForeignKey(User)
     status = models.CharField(_("Status"),
                               max_length=10,
                               choices=STATUS_CHOICES,

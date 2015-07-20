@@ -7,16 +7,15 @@ from django.core import serializers
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-#from django.shortcuts import render
-from django.views.generic import DetailView
+from django.views.generic import CreateView, DetailView
 from django.shortcuts import render_to_response
 from django.utils import timezone
 from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse_lazy
 
 from django.template import Context, RequestContext
-#from django.shortcuts import render_to_response, get_object_or_404
-
 from .models import Category, Event
+from .forms import EventForm
 
 class CategoryDetailView(DetailView):
     model = Category
@@ -26,8 +25,18 @@ class CategoryDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(CategoryDetailView, self).get_context_data(**kwargs)
         context['event_list'] = Event.objects.filter(category=self.object)
-#~ #~
+
         return context
+
+class EventCreateView(CreateView):
+    form_class=EventForm
+    template_name='thecalendar/page_form_event_add.html'
+    success_url=reverse_lazy('success')
+
+    def get_form_kwargs(self):
+        kwargs = super(EventCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs.copy()
 
 
 def fullcalendar_events_json(request):

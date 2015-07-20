@@ -6,11 +6,18 @@ from django.utils.text import slugify
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Field, HTML, Layout, Fieldset
 from crispy_forms.bootstrap import PrependedText
+from django.template import RequestContext
 
 from .models import Event
 
 
 class EventForm(forms.ModelForm):
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(EventForm, self).__init__(*args, **kwargs)
+        #user = kwargs.pop('user', None)
+
     @property
     def helper(self):
         helper = FormHelper()
@@ -72,34 +79,6 @@ class EventForm(forms.ModelForm):
             ),
         )
 
-
-            #~ Div(Div('address', 'country', Field('email', placeholder=_("Event contact Email")), Field('web', placeholder=_("Web site/page URL")), css_class="col-sm-6"),
-                        #~ Div('description', css_class="col-sm-6"),
-                        #~ css_class="row"
-                #~ ),
-                #~ Div(Div('address', 'country', Field('email', placeholder=_("Contact Email")), Field('web', placeholder=_("Web site URL")), css_class="col-sm-6"),
-                        #~ Div('description', css_class="col-sm-6"),
-                        #~ css_class="row"
-                #~ ),
-
-        #~ helper.layout = Layout(
-            #~ Fieldset(
-                #~ 'Event',
-                #~ 'summary',
-                #~ PrependedText('slug', 'foscarib.com/agenda/#', placeholder=_("Event ID")),
-                #~ 'country',
-                #~ 'categories',
-                #~ 'dtstart',
-                #~ 'dtend',
-                #~ 'allday',
-                #~ 'description',
-            #~ ),
-            #~ Fieldset(
-                #~ 'Location',
-                #~ 'address',
-                #~ 'location',
-            #~ ),
-        #~ )
         return helper
 
     class Meta:
@@ -132,6 +111,7 @@ class EventForm(forms.ModelForm):
             except Event.DoesNotExist:
                 pass
         if commit:
+            event.creation_user = self.user
             event.save()
             self.save_m2m()
         return event

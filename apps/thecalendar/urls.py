@@ -5,8 +5,7 @@ from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from .forms import EventForm
 from .models import Category, Event
-from .views import fullcalendar_events_json
-from .views import CategoryDetailView
+from .views import fullcalendar_events_json, CategoryDetailView, EventCreateView
 
 urlpatterns = [
     #index
@@ -25,13 +24,9 @@ urlpatterns = [
 
     # form add entry
     url(r'^event/add/$',
-        login_required(
-            CreateView.as_view(
-                form_class=EventForm,
-                template_name='thecalendar/page_form_event_add.html',
-                success_url=reverse_lazy('success'))
-            ),
-            name="form_event_add",
+            login_required(EventCreateView.as_view()
+        ),
+        name="form_event_add",
     ),
 
     # event details
