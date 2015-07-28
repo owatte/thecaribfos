@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^(?P<slug>[-\w]+)/update/$',
         login_required(ownership_required(EventUpdateView.as_view(), model=Event, owner_field='creation_user')
         ),
-        name = 'event_update'
+        name = 'form_event_update'
     ),
 
     # event details

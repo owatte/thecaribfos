@@ -75,7 +75,7 @@ class Event(models.Model):
     sequence = models.SmallIntegerField(_("Update number"), default=0)
     creation_date = models.DateTimeField(_("Created on"),
                                          auto_now_add=True)
-    creation_date = models.DateTimeField(_("Last modification"),
+    lastupdate_date = models.DateTimeField(_("Last modification"),
                                          auto_now=True)
     pub_status = models.CharField(_("Publication status"),
                                   max_length=10,

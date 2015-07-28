@@ -54,7 +54,7 @@
                         <a href="{% url 'thecarib:country_list' %}">{% trans 'Caribbean' %}</a> /  <a href="{% url 'thecarib:country_detail' entry.country.iso %}">{{ entry.country.name }}</a> / <a href="{% url 'thedirectory:category_detail' entry.category.slug %}">{{ entry.category.name}}</a> / {{ entry.name }}</h3>
                 </div>
                 <div class="panel-body">
-                    <h3>{{ entry.name }} <small>by {{ entry.creation_user.username }}</small>
+                    <h3>{{ entry.name }} <small>{% trans 'by' %} {{ entry.creation_user.username }}</small>
                     {% if request.user.is_authenticated %}
                         {% if request.user.username == entry.creation_user.username %}
                         <a href="{% url 'thedirectory:form_entry_update' entry.slug %}" class="btn btn-default btn-xs">{% trans 'Edit' %}</a>
@@ -84,7 +84,7 @@
               <a href="{{ entry.web }}">{{ entry.web }}</a>
             </address>
             <small class="text-muted"><i class="fa fa-user"> </i> {{ entry.creation_user.username }}{% if entry.creation_date %} <i class="fa fa-calendar"> </i> {{ entry.creation_date}}{% endif %}</small>
-
+            <hr>
         </div>
         <div class="row">
             {% if entry.tags.similar_objects %}
