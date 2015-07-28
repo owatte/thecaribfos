@@ -41,6 +41,12 @@ class Entry(models.Model):
                                max_length=250)
     lat = models.FloatField(_("Latitude"), null=True)
     lon = models.FloatField(_("Longitude"), null=True)
+    sequence = models.SmallIntegerField(_("Update number"), default=0)
+    creation_date = models.DateTimeField(_("Created on"),
+                                         auto_now_add=True)
+    lastupdate_date = models.DateTimeField(_("Last modification"),
+                                         auto_now=True)
+
     twitter =  models.CharField(_("Twitter account"),
                              max_length=75,
                              null=True,
@@ -60,6 +66,12 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        ''' increases the sequence number
+        '''
+        self.sequence += 1
+        super(Entry, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ["name", "country"]

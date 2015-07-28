@@ -83,8 +83,8 @@
               {{ entry.country.name }}<br>
               <a href="{{ entry.web }}">{{ entry.web }}</a>
             </address>
-            <small class="text-muted"><i class="fa fa-user"> </i> {{ entry.creation_user.username }}{% if entry.creation_date %} <i class="fa fa-calendar"> </i> {{ entry.creation_date}}{% endif %}</small>
-            <hr>
+            <small class="text-muted"><i class="fa fa-user"> </i> {{ entry.creation_user.username }}{% if entry.creation_date %} <i class="fa fa-calendar"> </i> {{ entry.creation_date}}{% endif %}
+            {% if entry.lastupdate_date != entry.creation_date %} <i class="fa fa-pencil-square-o"> </i> {{ entry.lastupdate_date}}{% endif %}</small><hr>
         </div>
         <div class="row">
             {% if entry.tags.similar_objects %}
