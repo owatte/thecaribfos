@@ -1,11 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, TemplateView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView, TemplateView
 
 from .forms import EventForm
 from .models import Category, Event
-from .views import fullcalendar_events_json, CategoryDetailView, EventCreateView
+from .views import fullcalendar_events_json, CategoryDetailView, EventCreateView, EventUpdateView
+from thecaribfos.decorators import ownership_required
 
 urlpatterns = [
     #index
@@ -24,9 +25,16 @@ urlpatterns = [
 
     # form add event
     url(r'^event/add/$',
-            login_required(EventCreateView.as_view()
+        login_required(EventCreateView.as_view()
         ),
         name="form_event_add",
+    ),
+
+    # form update event
+    url(r'^(?P<slug>[-\w]+)/update/$',
+        login_required(ownership_required(EventUpdateView.as_view(), model=Event, owner_field='creation_user')
+        ),
+        name = 'event_update'
     ),
 
     # event details
@@ -37,6 +45,8 @@ urlpatterns = [
         ),
         name = 'event_detail'
     ),
+
+
     # Category details
     url(r'^categories/(?P<slug>[-\w\d]+)/$',
         CategoryDetailView.as_view(),

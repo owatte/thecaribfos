@@ -7,7 +7,7 @@ from django.core import serializers
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 from django.shortcuts import render_to_response
 from django.utils import timezone
 from django.utils.translation import ugettext as _
@@ -35,6 +35,18 @@ class EventCreateView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(EventCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs.copy()
+
+class EventUpdateView(UpdateView):
+    form_class=EventForm
+    model = Event
+    slug_field = 'slug'
+    template_name='thecalendar/page_form_event_add.html'
+    success_url=reverse_lazy('success')
+
+    def get_form_kwargs(self):
+        kwargs = super(EventUpdateView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs.copy()
 

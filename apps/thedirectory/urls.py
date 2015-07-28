@@ -5,7 +5,8 @@ from django.views.generic import DetailView, CreateView, ListView, TemplateView
 
 from .forms import EntryForm
 from .models import Category, Entry
-from .views import CategoryDetailView, EntryCreateView, json_map_entries_by_tags
+from .views import CategoryDetailView, EntryCreateView, EntryUpdateView, json_map_entries_by_tags
+from thecaribfos.decorators import ownership_required
 
 urlpatterns = [
 
@@ -25,6 +26,13 @@ urlpatterns = [
         ),
         name="form_entry_add",
     ),
+    # form update entry
+    url(r'^entries/(?P<slug>[-\w\d]+)/update/$',
+        login_required(ownership_required(EntryUpdateView.as_view(), model=Entry, owner_field='creation_user')
+        ),
+        name="form_entry_update",
+    ),
+
     # Category details
     url(r'^categories/(?P<slug>[-\w\d]+)/$',
         CategoryDetailView.as_view(),

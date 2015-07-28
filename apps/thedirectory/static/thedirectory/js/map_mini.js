@@ -72,3 +72,27 @@ $("#geosearch-button").click(function(){
             alert('No correspondance found, try do indicate geolocation by clicking on the map');
     }
 })
+
+
+$("#frm-fos-entry-add button[type=submit]").click(function(){
+    if (!$("#id_lat").val() || !$("#id_lon").val())
+    {
+
+    }
+
+    var country = $("#id_country").val();
+    if (country){
+        var country_name = ", " + $("#id_country option[value=" + country + "]").text();
+    } else {
+        var country_name = "";
+    }
+    var address = "";
+    address = $("#id_address").val() + country_name;
+    address = address.replace('\n', ',');
+    var ret = geosearch(encodeURIComponent(address));
+    if (found == 0){
+        ret = geosearch(encodeURIComponent(country_name));
+        if (found == 0)
+            alert('No correspondance found, try do indicate geolocation by clicking on the map');
+    }
+})

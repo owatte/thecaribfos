@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 import django.http as http
 import django.shortcuts as shortcuts
 from django.http import HttpResponse
@@ -27,6 +27,17 @@ class EntryCreateView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(EntryCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs.copy()
+
+class EntryUpdateView(UpdateView):
+    model = Entry
+    form_class = EntryForm
+    template_name = 'thedirectory/page_form_entry_add.html'
+    success_url=reverse_lazy('success')
+
+    def get_form_kwargs(self):
+        kwargs = super(EntryUpdateView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs.copy()
 
