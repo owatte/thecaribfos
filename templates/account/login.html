@@ -23,14 +23,14 @@
                 <h3>{% trans "Log in with one of the following" %}</h3>
                 <br>
                 <div class="social-login-row">
-                    <a href='{% url "social:begin" "twitter" %}' class="btn btn-default btn-lg">
-                        <i class="fa fa-twitter"></i> Twitter
+                    <a href='{% url "social:begin" "twitter" %}' class="btn btn-twitter btn-lg">
+                        <i class="fa fa-twitter"></i> {% trans 'Connect with Twitter' %}
                     </a>
-                    <a href='{% url "social:begin" "facebook" %}' class="btn btn-default btn-lg">
-                        <i class="fa fa-facebook-square"></i> Facebook
+                    <a href='{% url "social:begin" "facebook" %}' class="btn btn-facebook btn-lg">
+                        <i class="fa fa-facebook-square"></i> {% trans 'Connect with Facebook' %}
                     </a>
-                    <a href='{% url "social:begin" "google-oauth2" %}' class="btn btn-default btn-lg">
-                        <i class="fa fa-google"></i> Google
+                    <a href='{% url "social:begin" "google-oauth2" %}' class="btn btn-googleplus btn-lg">
+                        <i class="fa fa-google-plus"></i> {% trans 'Connect with Google+' %}
                     </a>
                 </div>
                 <br>

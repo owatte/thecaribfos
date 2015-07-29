@@ -150,6 +150,28 @@ legend{
     border-color: #1dcaff;
 }
 
+.btn-facebook{
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #3b5998;
+}
+.btn-facebook:hover{
+    color: #fff;
+    background-color: #8b9dc3;
+    border-color: #8b9dc3;
+}
+
+.btn-googleplus{
+    color: #fff;
+    background-color: #d34836;
+    border-color: #d34836;
+}
+.btn-googleplus:hover{
+    color: #fff;
+    background-color: #db6c5e;
+    border-color: #db6c5e;
+}
+
 .panel-heading > .social-links a {
   text-decoration: none;
 }
