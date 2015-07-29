@@ -1,0 +1,137 @@
+{% extends 'include/page_panel.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load slug2js %}
+{% load endless %}
+
+
+{% block head_title %}{{ user.username }}{% endblock %}
+
+{% block head %}
+{% include "thedirectory/map/map_page_header.html" %}
+<link rel='stylesheet' href="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.css' %}"/>
+{% endblock %}
+
+{% block content-title %}{{ user.username }}{% endblock %}
+
+{% block panel-title %}
+<div class="pull-right social-links"><i class="fa fa-calendar"> </i> {% trans "Last visite" %} : {{ user.last_login }}</div>
+<i class="fa fa-user"> </i> {% trans "Member since" %} : {{ user.date_joined }}
+
+{% endblock %}
+
+{% block panel-body %}
+<div class="col-md-6">
+    <h3 class="page-header"><i class="fa fa-rocket"> </i> {% trans 'Directory' %} <span class="badge">{{ entries|length }}</span></h3>
+    <div class="list-group">{% lazy_paginate 5 entries using 'entries_at_page' %}
+    {% for entry in entries %}
+      <a href="{% url 'thedirectory:entry_detail' entry.slug %}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{ entry.name }}</h4>
+        <p class="list-group-item-text"><small class="text-muted">{{ entry.category.name }} - {{ entry.country.name }}</small></p>
+        <p class="list-group-item-text btn-link">{{ entry.description|slice:":150" }}</p>
+      </a>
+    {% empty %}
+        <p>{% blocktrans with username=user.get_full_name %}No directory entry for {{ username }}.{%   endblocktrans %}</p>
+    {% endfor %}
+    <br>
+    <p class="text-center">{% show_pages %}</p>
+    </div>
+</div>
+<div class="col-md-6">
+    {% if events|length < 1 %}
+    <h3 class="page-header"><i class="fa fa-random"> </i> {% trans 'Events' %}</h3>
+    <p>{% blocktrans with username=user.username %}Sorry, no events scheduled in Caribbean Free Open Source calendar by {{ username }}.{% endblocktrans %}</p>
+    {% endif %}
+    {% if events|length > 1 %}
+    <h3 class="page-header"><i class="fa fa-random"> </i> {% trans 'Events' %} <span class="badge">{{ events|length }}</span></h3>
+    {% endif %}
+    <div class="list-group">{% lazy_paginate 5 events using 'events_at_page' %}{% for event in events %}
+      <a href="{% url 'thecalendar:event_detail' event.slug %}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{ event.summary }}</h4>
+        <p class="list-group-item-text"><small class="text-muted">{{ event.category.name }} - {{ event.country.name }}</small></p>
+        <p class="list-group-item-text"><small>{{ event.dtstart }}{% if event.dtend != event.dtstart %} - {{ event.dtend }}{% endif %}</small></p>
+        <p class="list-group-item-text btn-link">{{ event.description|slice:":150" }}</p>
+      </a>
+    {% endfor %}
+    <br>
+    <p class="text-center">{% show_pages %}</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block panel-footer %}{% blocktrans with username=user.username %}{{ username }}'s contributions to the Caribbean FOS directory and calendar.{%   endblocktrans %}{% endblock %}
+{% block osmmap %}<div style="height:350px;" id="map"></div><br>{% endblock %}
+
+{% block see-also %}
+    {% for country in country_list %}
+    <li><strong><a href="{% url 'thecarib:country_detail' country.iso %}">{{ country.name|upper }}</a></strong></li>
+    {% endfor %}
+{% endblock %}
+
+{% block footer-js %}
+<script>
+    var map = new L.map('map',{fullscreenControl: false,
+                                scrollWheelZoom: false,
+                                fullscreenControlOptions:{position: 'topleft'}
+                              }).setView([19.031, -73.048], 4);
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+    }).addTo(map);
+    var markers = L.markerClusterGroup();
+
+    {% for entry in entry_list %}
+        {% if entry.lat %}
+        var marker = L.marker(new L.LatLng({{ entry.lat }}, {{ entry.lon }}), { title: "{{ entry.name }}" });
+        var popup = "<h3>{{ entry.name }}</h3>{% if entry.tags %}<ul class=\"list-inline\">{% for tag in entry.tags.slugs %}<li>#{{ tag }}</li>{% endfor %}</ul><p>{{ entry.category }}</p><p class=\"text-right\"><a href=\"/directory/entries/{{ entry.slug }}/\" class=\"small\">Read more <i class=\"fa fa-arrow-circle-right\"></i></a></p>{% endif %}";
+        marker.bindPopup(popup);
+        markers.addLayer(marker);
+        {% endif %}
+    {% endfor %}
+    {% for event in event_list %}
+        {% if event.lat %}
+        var marker = L.marker(new L.LatLng({{ event.lat }}, {{ event.lon }}), { title: "{{ event.summary }}" });
+        markers.addLayer(marker);
+        {% endif %}
+    {% endfor %}
+
+    map.addLayer(markers);
+    map.on();
+</script>
+<script src="{% static 'libs/bower_components/moment/min/moment.min.js' %}"></script>
+<script src="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.js' %}"></script>
+<script src="/static/libs/bower_components/fullcalendar/dist/lang/{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}.js"></script>
+<script type="application/javascript">
+    $(document).ready(function() {
+    $('#calendar').fullCalendar({
+            contentHeight: 'auto',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultDate: '{% now "Y-m-d" %}',
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end) {
+                var eventData;
+                if (title) {
+                    eventData = {
+                        title: title,
+                        start: start,
+                        end: end
+                    };
+                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                }
+                $('#calendar').fullCalendar('unselect');
+            },
+            editable: false,
+            eventLimit: false, // allow "more" link when too many events
+            events: '{% url "thecalendar:fullcalendar_json" %}?country={{ country.iso }}'
+    })
+});
+</script>
+
+
+{% endblock %}

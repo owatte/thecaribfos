@@ -36,7 +36,7 @@ urlpatterns = [
         name = 'account_profile'
     ),
     url(r"^account/social/", include("social.apps.django_app.urls", namespace="social")),
-
+    url(r'^user/', include('apps.theuser.urls', namespace='theuser')),
     url(r'^admin/', include(admin.site.urls)),
     # form submission success
     url(r'^contribute/success/$',
