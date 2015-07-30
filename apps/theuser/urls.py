@@ -5,7 +5,7 @@ from .views import UserDetailView
 
 urlpatterns = [
     # user public details
-    url(r'^(?P<username>[-\w]+)/$', UserDetailView.as_view(),
+    url(r'^(?P<slug>[-\w]+)/$', UserDetailView.as_view(),
     name = 'user_detail'
     ),
 ]
