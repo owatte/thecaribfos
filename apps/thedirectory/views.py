@@ -35,6 +35,7 @@ class EntryUpdateView(UpdateView):
     form_class = EntryForm
     template_name = 'thedirectory/page_form_entry_add.html'
     success_url=reverse_lazy('success')
+    context_object_name = 'entry'
 
     def get_form_kwargs(self):
         kwargs = super(EntryUpdateView, self).get_form_kwargs()
