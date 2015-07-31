@@ -54,7 +54,7 @@
                         <a href="{% url 'thecarib:country_list' %}">{% trans 'Caribbean' %}</a> /  <a href="{% url 'thecarib:country_detail' event.country.iso %}">{{ event.country.name }}</a> / <a href="{% url 'thecalendar:category_detail' event.category.slug %}">{{ event.category.name}}</a> / {{ event.summary }}</h3>
                 </div>
                 <div class="panel-body">
-                    <h3>{{ event.summary }} <small>{% trans 'by' %} {{ event.creation_user.username }}</small>
+                    <h3>{{ event.summary }} <small>{% trans 'by' %} <a href="{% url 'theuser:user_detail' event.creation_user.username %}">{{ event.creation_user.username }}</a></small>
                     {% if request.user.is_authenticated %}
                         {% if request.user.username == event.creation_user.username %}
                         <a href="{% url 'thecalendar:form_event_update' event.slug %}" class="btn btn-default btn-xs">{% trans 'Edit' %}</a>

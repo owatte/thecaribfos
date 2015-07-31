@@ -14,11 +14,7 @@
 
 {% block content-title %}{{ user.username }}{% endblock %}
 
-{% block panel-title %}
-<div class="pull-right social-links"><i class="fa fa-calendar"> </i> {% trans "Last visite" %} : {{ user.last_login }}</div>
-<i class="fa fa-user"> </i> {% trans "Member since" %} : {{ user.date_joined }}
-
-{% endblock %}
+{% block panel-title %}{% blocktrans with username=user.username %}{{ username }}'s contributions to the Caribbean FOS directory and calendar.{%   endblocktrans %}{% endblock %}
 
 {% block panel-body %}
 <div class="col-md-6">
@@ -59,7 +55,11 @@
 </div>
 {% endblock %}
 
-{% block panel-footer %}{% blocktrans with username=user.username %}{{ username }}'s contributions to the Caribbean FOS directory and calendar.{%   endblocktrans %}{% endblock %}
+{% block panel-footer %}
+{% if user.last_login %}<div class="pull-right social-links"><i class="fa fa-calendar"> </i> {% trans "Last visite" %} : {{ user.last_login }}</div>{% endif %}
+<i class="fa fa-user"> </i> {% trans "Member since" %} : {{ user.date_joined }}
+{% endblock %}
+
 {% block osmmap %}<div style="height:350px;" id="map"></div><br>{% endblock %}
 
 {% block see-also %}
