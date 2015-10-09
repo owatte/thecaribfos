@@ -1,8 +1,8 @@
 {% load i18n %}
 
-<div class="dropdown text-center" style="margin-bottom:20px;" role="group">
+<span class="dropdown text-center" style="margin-bottom:20px;" role="group">
 
-  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+  <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
     <i class="fa fa-filter"></i> {% if country_name %}{{ country_name }}{% else %}{% trans 'Filter by country' %}{% endif %}
     <span class="caret"></span>
   </button>
@@ -16,7 +16,7 @@
     </li>
     {% endfor %}
   </ul>
-</div>
+</span>
 
 
 

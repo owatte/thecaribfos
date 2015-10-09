@@ -67,6 +67,12 @@ urlpatterns = [
         ),
         name="map_js"
     ),
+    url(r'^map_home.js$',
+        ListView.as_view(model = Entry,
+                         template_name = 'thedirectory/map/map_home.js'
+        ),
+        name="map_js"
+    ),
     url(r'^map/tag/(?P<tag>[-_A-Za-z0-9]+)/entries.json$',
         json_map_entries_by_tags,
         name = 'json_map_entries_by_tags'

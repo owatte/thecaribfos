@@ -13,7 +13,7 @@
     <link href="{% static 'libs/startbootstrap-freelancer-1.0.3/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'libs/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css' %}" rel="stylesheet">
     <link href="{% static 'libs/startbootstrap-freelancer-1.0.3/css/freelancer.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'libs/startbootstrap-freelancer-1.0.3/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/bower_components/fontawesome/css/font-awesome.min.css' %}">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href='{% static "/static/favicons/favicon.ico" %}' />
@@ -21,6 +21,8 @@
     {% include "include/warning_old_ie.html" %}
     {# If js is unactivate #}
     {% include "include/warning_no_js.html" %}
+    {# jQuery #}
+    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/jquery.js' %}"></script>
     {% block head %}{% endblock %}
     <link href="{% static 'foscarib.css' %}" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="57x57" href="/static/favicons/apple-touch-icon-57x57.png">
@@ -56,8 +58,7 @@
     <script src='{% static "html5shiv/html5shiv-printshiv.min.js" %}'></script >
     <script src='{% static "respond/respond.min.js" %}'></script >
     <![endif]-->
-    {# jQuery #}
-    <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/jquery.js' %}"></script>
+
     {# Bootstrap Core JavaScript #}
     <script src="{% static 'libs/startbootstrap-freelancer-1.0.3/js/bootstrap.min.js' %}"></script>
     {# jQuery autocomplete_light #}

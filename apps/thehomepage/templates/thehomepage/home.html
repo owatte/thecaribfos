@@ -6,14 +6,39 @@
 
 {% block head %}
 <link rel='stylesheet' href="{% static 'libs/bower_components/fullcalendar/dist/fullcalendar.css' %}"/>
-
 {% include "thedirectory/map/map_page_header.html" %}
-
 {% endblock %}
 
 
 {% block body-header-content %}
-    <div class="container">
+
+<!-- Header -->
+
+
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1 class="name">The Caribbean <abbr title="Free Open Source">FOS</abbr></h1>
+            <hr class="star-light">
+<!--
+<p class="lead">{% trans '<abbr title="Free Open Source" class="initialism">FOS</abbr> stands for Free &amp; Open Source ; in kr&eacute;yol <abbr title="Free Open Source" class="initialism">FOS</abbr> means <i>strength</i> and <i>energy</i>' %}</p>
+-->
+            <h3>{% trans "Help us build the free &amp; open source caribbean hub !" %}</h3>
+            <br>
+            <a href="#wwww" class="btn btn-default btn-lg">Read more</a>
+        </div>
+    </header>
+<div id="wwww"></div>
+{% endblock %}
+
+
+
+
+
+{% block main-content %}
+<!--
+<div class="container">
+
+
         <div class="row">
             <div class="col-lg-12">
 
@@ -21,7 +46,7 @@
                 <div class="intro-text">
                     <h1 class="name">The Caribbean <abbr title="Free Open Source">FOS</abbr></h1>
                     <hr class="star-light">
-                    <p class="skills">{% trans '<abbr title="Free Open Source" class="initialism">FOS</abbr> stands for Free Open Source ; in kr&eacute;yol <abbr title="Free Open Source" class="initialism">FOS</abbr> means <i>strength</i> and <i>energy</i>' %}</p>
+                    <p class="skills">{% trans '<abbr title="Free Open Source" class="initialism">FOS</abbr> stands for Free &amp; Open Source ; in kr&eacute;yol <abbr title="Free Open Source" class="initialism">FOS</abbr> means <i>strength</i> and <i>energy</i>' %}</p>
                 </div>
             </div>
             <div class="text-center">
@@ -44,29 +69,46 @@
             </div>
         </div>
     </div>
-{% endblock %}
+-->
 
-
-
-
-
-{% block main-content %}
-<div class="container">
+<div class="container" id="pitch">
     <div class="row text-center">
         <div class="col-mg-12">
             <h2>{{ request.get_host }}</h2>
             <hr class="star-primary">
             <br>
-            <p class="lead"><a href="{% url 'thedirectory:map' %}">{% trans 'The map' %}</a> and <a href="{% url 'thecalendar:agenda' %}">{% trans 'the calendar' %}</a> for the {% trans 'The <a href="/caribbean/">Caribbean</a> Free Open Source software / hardware / data / networks / companies, communities and people ...' %}</p>
-            <p>
-                <a href='https://twitter.com/thecaribfos' role="button" class="btn btn-twitter btn-lg"><span class='fa fa-twitter'> </span> {% trans 'follow @TheCaribFOS' %}</a>
-                <a href="{% url 'thecontactform:contact-form' %}" class="btn btn-link btn-lg">{% trans 'Contact' %}</a>
-            </p>
+            <p class="lead homeblock">{% trans 'Places and dates for the caribbean Free &amp; Open Source software / hardware / data / networks / companies, communities and people ...' %}</p>
+            <br><br>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-3">
+            <h2>Who<br><i class="fa fa-share-alt"></i></h2>
+            <p class="homeblock">{% trans "The directory : communities, companies and people ..."%}</p>
+            <p><a class="btn btn-default" href="{% url 'thedirectory:form_entry_add' %}" role="button">{% trans 'Add a new entry' %}</a></p>
+        </div>
+        <div class="col-md-3">
+            <h2>What<br><i class="fa fa-rocket"></i></h2>
+            <p class="homeblock">{% trans "The dates : conventions, meetings, talks, workshops ..."%}</p>
+            <p><a class="btn btn-default" href="{% url 'thecalendar:form_event_add' %}" role="button">{% trans 'Add a new event' %}</a></p>
+        </div>
+        <div class="col-md-3">
+            <h2>When<br><i class="fa fa-calendar-o"></i></h2>
+            <p class="homeblock">{% trans "The calendar : all FOS events, in the whole caribbean" %}</p>
+            <p><a class="btn btn-default" href="{% url 'thecalendar:agenda' %}" role="button">{% trans 'Show the calendar' %}</a></p>
+        </div>
+        <div class="col-md-3">
+            <h2>Where<br><i class="fa fa-map"></i></h2>
+            <p class="homeblock">{% trans "The map : all FOS spots, in the whole caribbean" %}</p>
+            <p><a class="btn btn-default" href="{% url 'thedirectory:map' %}" role="button">{% trans 'Show the map' %}</a></p>
         </div>
     </div>
 </div>
 {% endblock %}
 
+{%  block body-footer-content %}
+<div id="map" style="width: 100%; height: 475px; padding-top: -50px;"></div>
+{% endblock %}
 
 {% block footer-js %}
     {# Custom Full calendar #}
@@ -81,7 +123,6 @@
       $(this).removeData('bs.modal');
     })
     </script>
-
 {% endblock %}
 
 {% block analytics %}{% endblock %}
