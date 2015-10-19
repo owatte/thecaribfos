@@ -26,6 +26,9 @@
             <br>
             <a href="#wwww" class="btn btn-default btn-lg">Read more</a>
         </div>
+        <div class="hidden-xs credit-header">
+            <p>photo : Mstyslav Chernov <a href="https://commons.wikimedia.org/wiki/File:Guadeloupe_winter_carnival,_Pointe-%C3%A0-Pitre_parade._A_group_of_drummers_during_carnival_procession%28photo_reportage,_outdoor_portrait%29.jpg">Wikimedia Commons</a> - <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">licence CC BY-SA 3.0</a></p>
+        </div>
     </header>
 <div id="wwww"></div>
 {% endblock %}
@@ -77,29 +80,29 @@
             <h2>{{ request.get_host }}</h2>
             <hr class="star-primary">
             <br>
-            <p class="lead homeblock">{% trans 'Places and dates for the caribbean Free &amp; Open Source software / hardware / data / networks / companies, communities and people ...' %}</p>
+            <p class="lead">{% trans 'Places and dates for the caribbean Free &amp; Open Source software / hardware / data / networks / companies, communities and people ...' %}</p>
             <br><br>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-md-3">
             <h2>Who<br><i class="fa fa-share-alt"></i></h2>
-            <p class="homeblock">{% trans "The directory : communities, companies and people ..."%}</p>
+            <p>{% trans "The directory : communities, companies and people ..."%}</p>
             <p><a class="btn btn-default" href="{% url 'thedirectory:form_entry_add' %}" role="button">{% trans 'Add a new entry' %}</a></p>
         </div>
         <div class="col-md-3">
             <h2>What<br><i class="fa fa-rocket"></i></h2>
-            <p class="homeblock">{% trans "The dates : conventions, meetings, talks, workshops ..."%}</p>
+            <p>{% trans "The dates : conventions, meetings, talks, workshops ..."%}</p>
             <p><a class="btn btn-default" href="{% url 'thecalendar:form_event_add' %}" role="button">{% trans 'Add a new event' %}</a></p>
         </div>
         <div class="col-md-3">
             <h2>When<br><i class="fa fa-calendar-o"></i></h2>
-            <p class="homeblock">{% trans "The calendar : all FOS events, in the whole caribbean" %}</p>
+            <p>{% trans "The calendar : all FOS events, in the whole caribbean" %}</p>
             <p><a class="btn btn-default" href="{% url 'thecalendar:agenda' %}" role="button">{% trans 'Show the calendar' %}</a></p>
         </div>
         <div class="col-md-3">
             <h2>Where<br><i class="fa fa-map"></i></h2>
-            <p class="homeblock">{% trans "The map : all FOS spots, in the whole caribbean" %}</p>
+            <p>{% trans "The map : all FOS spots, in the whole caribbean" %}</p>
             <p><a class="btn btn-default" href="{% url 'thedirectory:map' %}" role="button">{% trans 'Show the map' %}</a></p>
         </div>
     </div>

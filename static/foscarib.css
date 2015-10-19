@@ -278,3 +278,22 @@ taken from startbootstrap-stylish-portfolio
 #pitch {
     padding-top: 42px;
 }
+
+.credit-header{
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+.credit-header p, .credit-footer{
+    background:rgba(255, 255, 255, 0.7) none repeat scroll 0% 0%;
+    padding: 0 0.5em;
+    margin-bottom:0;
+    font-size: 11px;
+    color:#333;
+    font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+
+.credit-header p a, .credit-footer a{
+    color:#0078A8;
+}
